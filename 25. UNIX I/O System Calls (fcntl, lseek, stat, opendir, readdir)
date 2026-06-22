@@ -1,0 +1,25 @@
+#include<stdio.h>
+#include<fcntl.h>
+#include<unistd.h>
+#include<sys/stat.h>
+#include<dirent.h>
+
+int main()
+{
+    struct stat st;
+
+    stat("sample.txt",&st);
+
+    printf("Size=%ld\n",st.st_size);
+
+    DIR *d=opendir(".");
+
+    struct dirent *dir;
+
+    while((dir=readdir(d))!=NULL)
+        printf("%s\n",dir->d_name);
+
+    closedir(d);
+
+    return 0;
+}
